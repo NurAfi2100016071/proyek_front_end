@@ -2,12 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function Add() {
+function Edit() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:3001/users/${id}`).then((res) => {
@@ -15,9 +16,7 @@ function Add() {
       setEmail(res.data.email);
       setPhone(res.data.phone);
     });
-  }, []);
-
-  const navigate = useNavigate();
+  }, [id]);
 
   const data = {
     name: name,
@@ -27,8 +26,11 @@ function Add() {
 
   function Update(e) {
     e.preventDefault();
-    axios.put(`http://localhost:3001/users/${id}`, data).then(navigate("/"));
+    axios.put(`http://localhost:3001/users/${id}`, data).then(() => {
+      navigate("/");
+    });
   }
+
   return (
     <div className="w-screen h-full flex flex-col justify-center items-center mt-16">
       <h2 className="text-2xl font-bold">Detail Pengunjung</h2>
@@ -54,11 +56,11 @@ function Add() {
           type="phone"
           placeholder="Enter your phone no."
         />
-       <button
+        <button
           className="bg-gray-400 outline-none font-bold border text-white border-zinc-400 py-4 pl-4 mt-4"
           type="submit"
           onClick={Update}
->
+        >
           Perbarui Data
         </button>
       </form>
@@ -66,4 +68,4 @@ function Add() {
   );
 }
 
-export default Add;
+export default Edit;

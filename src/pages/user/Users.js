@@ -11,7 +11,7 @@ function Users() {
     axios.get(`http://localhost:3001/users/${id}`).then((res) => {
       setUser(res.data);
     });
-  }, []);
+  }, [id]);
 
   console.log(user);
   return (
