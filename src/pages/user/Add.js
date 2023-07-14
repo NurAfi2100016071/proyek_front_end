@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar";
 
 function Add() {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ function Add() {
 
   const navigate = useNavigate();
   const data = {
-    name: name,
+    nama: name,
     email: email,
     phone: phone,
   };
@@ -31,8 +32,8 @@ function Add() {
     setPhoneError("");
 
     axios
-      .post("http://localhost:3001/users", data)
-      .then(() => navigate("/"))
+      .post("http://localhost:9090/pengunjung", data)
+      .then(() => navigate("/tablemember")) // Mengarahkan ke halaman "tablemember" setelah selesai
       .catch((error) => console.error(error));
   }
 
@@ -47,6 +48,8 @@ function Add() {
   }
 
   return (
+    <>
+    <Navbar />
     <div className="w-screen h-full flex flex-col justify-center items-center mt-16">
       <h2 className="text-2xl font-bold">Tambah Pengunjung</h2>
       <form className="w-[50%] h-full flex flex-col mt-2">
@@ -82,10 +85,8 @@ function Add() {
         </button>
       </form>
     </div>
+    </>
   );
 }
 
 export default Add;
-
-
-

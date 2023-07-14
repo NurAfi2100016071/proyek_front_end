@@ -1,37 +1,40 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from "../Navbar";
 
 function Edit() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const { id } = useParams();
+  const { _id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/users/${id}`).then((res) => {
-      setName(res.data.name);
+    axios.get(`http://localhost:9090/pengunjung/${_id}`).then((res) => {
+      setName(res.data.nama);
       setEmail(res.data.email);
       setPhone(res.data.phone);
     });
-  }, [id]);
+  }, [_id]);
 
   const data = {
-    name: name,
+    nama: name,
     email: email,
     phone: phone,
   };
 
   function Update(e) {
     e.preventDefault();
-    axios.put(`http://localhost:3001/users/${id}`, data).then(() => {
-      navigate("/");
+    axios.put(`http://localhost:9090/pengunjung/${_id}`, data).then(() => {
+      navigate("/tablemember"); // Mengarahkan pengguna ke halaman "tablemember"
     });
   }
 
   return (
+    <>
+    <Navbar />
     <div className="w-screen h-full flex flex-col justify-center items-center mt-16">
       <h2 className="text-2xl font-bold">Detail Pengunjung</h2>
       <form className="w-[50%] h-full flex flex-col mt-2">
@@ -57,7 +60,7 @@ function Edit() {
           placeholder="Enter your phone no."
         />
         <button
-          className="bg-gray-400 outline-none font-bold border text-white border-zinc-400 py-4 pl-4 mt-4"
+          className="bg-blue-600 outline-none font-bold border text-white border-zinc-400 py-4 pl-4 mt-4"
           type="submit"
           onClick={Update}
         >
@@ -65,6 +68,7 @@ function Edit() {
         </button>
       </form>
     </div>
+    </>
   );
 }
 

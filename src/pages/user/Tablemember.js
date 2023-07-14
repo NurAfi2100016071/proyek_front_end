@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar";
+
 
 function Tablemember() {
     const [users, setUsers] = useState([]);
   function loadUsers() {
-    axios.get("http://localhost:3001/users").then((res) => {
+    axios.get("http://localhost:9090/pengunjung").then((res) => {
       setUsers(res.data.reverse());
     });
   }
@@ -14,12 +16,15 @@ function Tablemember() {
     loadUsers();
   }, []);
 
-  function deleteUser(id) {
-    axios.delete(`http://localhost:3001/users/${id}`).then(loadUsers());
+// mengirim permintaan delete ke http  database
+  function deleteUser(_id) {
+    axios.delete(`http://localhost:9090/pengunjung/${_id}`).then(loadUsers());
   }
 
   return (
+  
     <>
+    <Navbar />
       <div className="w-[100vw] h-full justify-center items-center flex flex-col px-10 py-8 mt-8">
         <h1 className="text-3xl font-bold">PENGUNJUNG CAMP ADVENTURE</h1>
         <p className="text-lg mt-4">
@@ -74,7 +79,7 @@ function Tablemember() {
                           {index + 1}
                         </td>
                         <td className="text-xl text-gray-900 font-semibold px-6 py-4 whitespace-nowrap">
-                          {data.name}
+                          {data.nama}
                         </td>
                         <td className="text-xl text-gray-900 font-semibold px-6 py-4 whitespace-nowrap">
                           {data.email}
@@ -84,19 +89,19 @@ function Tablemember() {
                         </td>
                         <td className="text-sm flex justify-between  items-center text-gray-900 font-bold px-6 py-4 space-x-4 whitespace-nowrap">
                           <Link
-                            to={`/users/${data.id}`}
+                            to={`/users/${data._id}`}
                             className="bg-teal-600 text-white px-6 py-2 rounded-lg"
                           >
                             Lihat
                           </Link>
                           <Link
-                            to={`/edit-user/${data.id}`}
-                            className="bg-gray-400 text-white px-6 py-2 rounded-lg"
+                            to={`/edit-user/${data._id}`}
+                            className="bg-blue-600 text-white px-6 py-2 rounded-lg"
                           >
                             Ubah
                           </Link>
                           <Link
-                            onClick={()=>deleteUser(data.id)}
+                            onClick={()=>deleteUser(data._id)}
                             to={"#"}
                             className="bg-red-600 text-white px-6 py-2 rounded-lg"
                           >
@@ -116,6 +121,7 @@ function Tablemember() {
         </div>
       </div>
     </>
+    
   );
 }
 

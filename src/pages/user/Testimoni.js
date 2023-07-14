@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../Navbar';
 
 const Testimoni = () => {
     const testimonies = [
@@ -21,6 +22,8 @@ const Testimoni = () => {
     ];
 
     return (
+        <>
+        <Navbar />
         <div className="bg-gray-100 py-20">
             <div className="container mx-auto">
                 <h1 className="text-4xl font-bold text-center mb-10">TESTIMONI PENGUNJUNG</h1>
@@ -38,6 +41,7 @@ const Testimoni = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
