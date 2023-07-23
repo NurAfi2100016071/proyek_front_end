@@ -27,7 +27,7 @@ function Edit() {
 
   function Update(e) {
     e.preventDefault();
-    axios.put(`https://tiny-gray-newt-tie.cyclic.app/${_id}`, data).then(() => {
+    axios.put(`https://tiny-gray-newt-tie.cyclic.app/pengunjung/${_id}`, data).then(() => {
       navigate("/tablemember"); // Mengarahkan pengguna ke halaman "tablemember"
     });
   }
