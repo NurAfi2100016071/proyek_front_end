@@ -32,7 +32,7 @@ function Add() {
     setPhoneError("");
 
     axios
-      .post("http://localhost:9090/pengunjung", data)
+      .post("https://tiny-gray-newt-tie.cyclic.app/pengunjung", data)
       .then(() => navigate("/tablemember")) // Mengarahkan ke halaman "tablemember" setelah selesai
       .catch((error) => console.error(error));
   }
