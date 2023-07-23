@@ -27,7 +27,7 @@ const RegisterForm = () => {
 
     try {
       // Kirim data registrasi ke backend
-      const response = await axios.post('http://localhost:9090/register', {
+      const response = await axios.post('https://tiny-gray-newt-tie.cyclic.app/register', {
         name,
         email,
         password,
