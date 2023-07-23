@@ -7,7 +7,7 @@ import Navbar from "../Navbar";
 function Tablemember() {
     const [users, setUsers] = useState([]);
   function loadUsers() {
-    axios.get("http://localhost:9090/pengunjung").then((res) => {
+    axios.get("https://tiny-gray-newt-tie.cyclic.app/pengunjung").then((res) => {
       setUsers(res.data.reverse());
     });
   }
@@ -18,7 +18,7 @@ function Tablemember() {
 
 // mengirim permintaan delete ke http  database
   function deleteUser(_id) {
-    axios.delete(`http://localhost:9090/pengunjung/${_id}`).then(loadUsers());
+    axios.delete(`https://tiny-gray-newt-tie.cyclic.app/pengunjung/${_id}`).then(loadUsers());
   }
 
   return (
