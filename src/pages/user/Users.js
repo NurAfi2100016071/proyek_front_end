@@ -9,7 +9,7 @@ function Users() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:9090/pengunjung/${id}`).then((res) => {
+    axios.get(`https://tiny-gray-newt-tie.cyclic.app/pengunjung/${id}`).then((res) => {
       console.log(res.data)
       setUser(res.data);
     });
