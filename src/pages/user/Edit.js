@@ -12,7 +12,7 @@ function Edit() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:9090/pengunjung/${_id}`).then((res) => {
+    axios.get(`https://tiny-gray-newt-tie.cyclic.app/pengunjung/${_id}`).then((res) => {
       setName(res.data.nama);
       setEmail(res.data.email);
       setPhone(res.data.phone);
